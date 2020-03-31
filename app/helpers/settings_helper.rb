@@ -105,4 +105,18 @@ module SettingsHelper
       safe_join([image_tag(account.avatar.url, width: 15, height: 15, alt: display_name(account), class: 'avatar'), content_tag(:span, account.acct, class: 'username')], ' ')
     end
   end
+
+  def picture_hint(hint, picture)
+    link = link_to t('generic.clear'), settings_profile_path,
+      data: {
+        method: :put,
+        params: 'account[subaction]=clear_' + picture.name.to_s,
+      }
+
+    if picture.original_filename.nil?
+      hint
+    else
+      safe_join([hint, link], '<br/>'.html_safe)
+    end
+  end
 end
