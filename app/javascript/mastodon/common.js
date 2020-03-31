@@ -1,4 +1,5 @@
 import Rails from '@rails/ujs';
+import { startSyncUjs } from './utils/sync-ujs';
 
 export function start() {
   require('font-awesome/css/font-awesome.css');
@@ -6,6 +7,7 @@ export function start() {
 
   try {
     Rails.start();
+    startSyncUjs();
   } catch (e) {
     // If called twice
   }
